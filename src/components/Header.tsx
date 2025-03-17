@@ -53,7 +53,13 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
       stagger: 0.1,
       duration: 0.7,
       ease: "power2.out"
-    }, "-=0.7");
+    }, "-=0.7")
+    .from(".secondary-image", {
+      scale: 0.85,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    }, "-=0.6");
     
     // Create parallax effect
     if (parallaxRef.current) {
@@ -133,6 +139,18 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
           <Button className="header-cta text-lg px-8 py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
             {ctaText} <ArrowRight className="ml-2" />
           </Button>
+          
+          {/* Secondary image - visible on mobile only */}
+          <div className="secondary-image mt-8 relative mx-auto lg:hidden w-3/4">
+            <div className="relative rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=500" 
+                alt="Cheese assortment" 
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-600/30 to-transparent"></div>
+            </div>
+          </div>
         </div>
         
         <div className="header-image lg:w-1/2 relative">
@@ -145,6 +163,18 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
             
             {/* Animated glow effect */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/60 to-amber-700/60 rounded-2xl blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
+          </div>
+          
+          {/* Secondary image - only visible on large screens */}
+          <div className="secondary-image absolute -left-16 bottom-20 hidden lg:block w-48 h-48 z-20">
+            <div className="relative rounded-xl overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+              <img 
+                src="https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=500" 
+                alt="Cheese assortment" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-amber-600/30 to-transparent"></div>
+            </div>
           </div>
           
           {/* Prize value badge with more prominent styling */}
