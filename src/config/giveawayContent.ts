@@ -1,3 +1,4 @@
+
 // This file centralizes all editable content for the giveaway page
 
 // Prize section
@@ -26,6 +27,18 @@ export const headerContent = {
   description: "Perfect for Vaughan families looking for a cozy night in! Enter for a chance to win our exclusive cheese board package valued at $175. No purchase necessary.",
   ctaText: "Enter Now",
   heroImage: prizeImages[0],
+};
+
+// Navigation section
+export const navigationContent = {
+  title: "Cheese Board Giveaway",
+  links: [
+    { name: 'Home', href: '#' },
+    { name: 'Prize Details', href: '#prize' },
+    { name: 'How to Enter', href: '#howToEnter' },
+    { name: 'Rules', href: '#rules' },
+    { name: 'Contact', href: '#contact' }
+  ]
 };
 
 // How to Enter section
@@ -129,14 +142,31 @@ export const rulesContent = {
 // Contact section
 export const contactContent = {
   title: "Get In Touch",
-  email: "info@theskygroup.ca",
-  phone: "289-210-5250",
+  email: "info@rapsgiveaway.com",
+  phone: "416-555-1234",
   brokerage: {
-    name: "The Real Brokerage, Inc.",
-    address: "133 Richmond Street West Suite 302"
+    name: "Toronto Sports Entertainment",
+    address: "123 Arena Blvd, Toronto"
   },
   disclaimer: "This site is not intended to solicit buyers or sellers who are currently under contract.",
   copyright: "Copyright 2025. All rights reserved",
+  privacyPolicyText: "Privacy Policy"
+};
+
+// Footer section
+export const footerContent = {
+  aboutText: "The Raptors Giveaway specializes in offering exclusive prizes to our dedicated fans.",
+  email: "info@rapsgiveaway.com",
+  phone: "416-555-1234",
+  quickLinks: ["Home", "About", "Listings", "Contact", "Privacy Policy"],
+  newsletterText: "Subscribe to our newsletter for the latest updates on giveaways and exclusive offers.",
+  brokerage: {
+    name: "Toronto Sports Entertainment",
+    address: "123 Arena Blvd, Toronto"
+  },
+  disclaimer: "This site is not intended to solicit buyers or sellers who are currently under contract.",
+  copyright: "Copyright 2025. All rights reserved",
+  company: "The Sky Group Real Estate",
   privacyPolicyText: "Privacy Policy"
 };
 

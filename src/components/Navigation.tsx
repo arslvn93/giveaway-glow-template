@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { navigationContent } from '@/config/giveawayContent';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,14 +24,6 @@ const Navigation = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const navLinks = [
-    { name: 'Home', href: '#' },
-    { name: 'Prize Details', href: '#prize' },
-    { name: 'How to Enter', href: '#howToEnter' },
-    { name: 'Rules', href: '#rules' },
-    { name: 'Contact', href: '#contact' }
-  ];
-
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -40,12 +33,12 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <a href="#" className="text-xl font-bold text-amber-700">
-            Cheese Board Giveaway
+            {navigationContent.title}
           </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-6">
-            {navLinks.map((link, index) => (
+            {navigationContent.links.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
@@ -75,7 +68,7 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col space-y-4">
-            {navLinks.map((link, index) => (
+            {navigationContent.links.map((link, index) => (
               <a
                 key={index}
                 href={link.href}
