@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { AlertCircle, CheckCircle2, HelpCircle } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { rulesContent } from '@/config/giveawayContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -80,11 +81,11 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="rules-title text-3xl md:text-5xl font-bold mb-4 text-amber-700">
-            Rules & Eligibility
+            {rulesContent.title}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-amber-300 mx-auto mb-6"></div>
           <p className="rules-description text-gray-700 max-w-2xl mx-auto">
-            Please review the following rules and eligibility requirements before entering the giveaway.
+            {rulesContent.description}
           </p>
         </div>
         
@@ -92,7 +93,7 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
           <div className="lg:col-span-1 order-2 lg:order-1">
             <div className="rules-image relative">
               <img 
-                src="https://images.unsplash.com/photo-1607344645866-009c320b63e0?q=80&w=800" 
+                src={rulesContent.imageUrl} 
                 alt="Rules and guidelines" 
                 className="rounded-xl shadow-xl object-cover"
               />
@@ -110,12 +111,12 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
                 Important Notice
               </h3>
               <p className="text-gray-700">
-                All winners will be contacted via the email provided during entry. Make sure to check your inbox (and spam folder) regularly after the giveaway ends.
+                {rulesContent.importantNotice}
               </p>
               <div className="mt-4 pt-4 border-t border-amber-100">
                 <div className="flex items-center space-x-2">
                   <HelpCircle className="text-amber-500 w-4 h-4" />
-                  <span className="text-sm text-gray-600">Need help? Contact support@giveaway.com</span>
+                  <span className="text-sm text-gray-600">Need help? Contact {rulesContent.supportEmail}</span>
                 </div>
               </div>
             </div>
@@ -148,10 +149,10 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
               
               <div className="mt-8 flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-amber-100 relative z-10">
                 <p className="text-sm text-gray-600 mb-4 sm:mb-0">
-                  By entering, you agree to all rules and terms.
+                  {rulesContent.termsText}
                 </p>
                 <button className="text-sm bg-amber-100 text-amber-700 px-6 py-3 rounded-full hover:bg-amber-600 hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg border border-amber-200 hover:border-amber-600">
-                  Download Full Rules PDF
+                  {rulesContent.downloadRulesText}
                 </button>
               </div>
             </div>
@@ -160,18 +161,12 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
             <div className="mt-8 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-6 border border-amber-200 shadow-md">
               <h3 className="text-xl font-semibold mb-3 text-amber-700">Tips for Entering</h3>
               <ul className="space-y-2">
-                <li className="flex items-start">
-                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
-                  <span className="text-gray-700">Double-check your email address before submitting your entry</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
-                  <span className="text-gray-700">Share on social media for additional entry opportunities</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
-                  <span className="text-gray-700">Set a calendar reminder for the drawing date</span>
-                </li>
+                {rulesContent.tipsForEntering.map((tip, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
+                    <span className="text-gray-700">{tip}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

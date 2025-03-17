@@ -6,6 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { Card, CardContent } from "@/components/ui/card";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prizeContent } from '@/config/giveawayContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,7 +27,6 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
   const sectionRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const benefitsRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -154,7 +154,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
             <div className="absolute bottom-6 -right-6 md:right-0 animate-pulse-slow z-20">
               <div className="w-28 h-28 md:w-32 md:h-32 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex flex-col items-center justify-center text-white shadow-lg transform rotate-12">
                 <span className="text-xs md:text-sm uppercase tracking-wider text-amber-100">Value</span>
-                <p className="font-bold text-2xl md:text-3xl">$175</p>
+                <p className="font-bold text-2xl md:text-3xl">{prizeContent.value}</p>
                 <span className="text-xs text-amber-100 px-2 text-center">Limited Time</span>
               </div>
             </div>

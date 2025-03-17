@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { contactContent } from '@/config/giveawayContent';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,7 +72,7 @@ const ContactSection = ({ contactInfo }: { contactInfo: ContactInfoProps }) => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="contact-title text-3xl md:text-4xl font-bold mb-4">
-            Get In Touch
+            {contactContent.title}
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto"></div>
         </div>
@@ -120,7 +121,7 @@ const ContactSection = ({ contactInfo }: { contactInfo: ContactInfoProps }) => {
               
               <div className="contact-item mt-6 pt-6 border-t border-gray-100">
                 <p className="text-sm text-gray-500">
-                  This site is not intended to solicit buyers or sellers who are currently under contract.
+                  {contactContent.disclaimer}
                 </p>
               </div>
             </div>
@@ -128,8 +129,8 @@ const ContactSection = ({ contactInfo }: { contactInfo: ContactInfoProps }) => {
           
           <div className="legal-info mt-8 pt-6 border-t border-gray-100 text-center">
             <p className="text-sm text-gray-500">
-              Copyright 2025. All rights reserved<br />
-              The Sky Group Real Estate | <a href="#" className="text-amber-700 hover:underline">Privacy Policy</a>
+              {contactContent.copyright}<br />
+              The Sky Group Real Estate | <a href="#" className="text-amber-700 hover:underline">{contactContent.privacyPolicyText}</a>
             </p>
           </div>
         </div>
