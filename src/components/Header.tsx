@@ -161,12 +161,16 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
           <p className="header-desc text-xl md:text-2xl text-gray-700 mb-8 max-w-xl mx-auto lg:mx-0">
             {description}
           </p>
-          <Button 
-            className="header-cta text-lg px-8 py-6 rounded-full bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-amber-400 font-bold flex items-center relative z-20"
-          >
-            <span className="mr-2">{ctaText}</span> 
-            <ArrowRight className="h-6 w-6" />
-          </Button>
+          
+          {/* New button implementation with higher z-index and clear styling */}
+          <div className="header-cta relative z-30">
+            <Button 
+              className="text-lg px-8 py-6 rounded-full bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 font-bold border-2 border-amber-400"
+            >
+              <span className="mr-2">{ctaText}</span> 
+              <ArrowRight className="h-6 w-6" />
+            </Button>
+          </div>
           
           <div className="secondary-image mt-8 relative mx-auto lg:hidden w-3/4">
             <div className="relative rounded-xl overflow-hidden shadow-lg">
