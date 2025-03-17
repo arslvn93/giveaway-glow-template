@@ -148,6 +148,9 @@ const Index = () => {
         heroImage={prizeImages[0]}
       />
       
+      {/* Rearranged sections for better conversion */}
+      <CountdownTimer endDate={endDate} />
+      
       <PrizeDetails 
         images={prizeImages}
         title="Gourmet Cheese Board Gift Basket"
@@ -157,8 +160,6 @@ const Index = () => {
       />
       
       <HowToEnter />
-      
-      <CountdownTimer endDate={endDate} />
       
       <PreviousWinners winners={winners} />
       

@@ -33,7 +33,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 75%", // Adjusted trigger point
+        start: "top 75%", 
         end: "bottom 70%",
         toggleActions: "play none none none"
       }
@@ -94,7 +94,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-28 md:py-36 relative overflow-visible" id="prizeDetails">
+    <section ref={sectionRef} className="py-24 md:py-28 relative overflow-visible" id="prizeDetails">
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-amber-100/30 rounded-full filter blur-3xl"></div>
@@ -106,7 +106,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
       <div className="absolute bottom-40 left-20 w-24 h-24 prize-decoration bg-amber-600/10 rounded-full"></div>
       
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-20">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
           <span className="text-amber-700">Prize Details</span>
         </h2>
         
@@ -155,7 +155,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
             <div className="space-y-6 pt-4">
               <h4 className="text-xl font-semibold flex items-center">
                 <span className="w-8 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mr-3"></span>
-                What's Included:
+                Here's what makes this curated basket so special:
               </h4>
               <ul className="space-y-4">
                 {features.map((feature, index) => (
@@ -173,8 +173,8 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
 
         {/* Benefits Section */}
         {benefits && benefits.length > 0 && (
-          <div ref={benefitsRef} className="mt-24 md:mt-32">
-            <div className="text-center mb-12">
+          <div ref={benefitsRef} className="mt-20 md:mt-24">
+            <div className="text-center mb-10">
               <h3 className="text-2xl md:text-3xl font-bold mb-4">
                 Why You Don't Want To Miss This:
               </h3>
@@ -190,10 +190,10 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
               ))}
             </div>
             
-            <div className="mt-10 text-center">
-              <button className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+            <div className="mt-12 text-center">
+              <a href="#howToEnter" className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
                 CLICK HERE TO REGISTER
-              </button>
+              </a>
               <p className="mt-3 text-gray-600 font-medium">Your chance to win a gourmet experience!</p>
             </div>
           </div>

@@ -104,12 +104,18 @@ const Footer = ({ brokerageName, brokerageAddress, email, phone }: FooterProps) 
             </p>
             <div className="pt-3 text-sm text-amber-100/60">
               <p>This site is not intended to solicit buyers or sellers who are currently under contract.</p>
+              <p className="mt-2">Copyright © 2025 The Sky Group Real Estate. All rights reserved.</p>
             </div>
           </div>
         </div>
         
-        <div className="mt-12 pt-6 border-t border-amber-700/50 text-center text-amber-100/60 text-sm">
-          <p>Copyright © 2025 The Sky Group Real Estate. All rights reserved.</p>
+        <div className="mt-12 pt-6 border-t border-amber-700/50 flex flex-col md:flex-row justify-between items-center text-amber-100/60 text-sm">
+          <p>The Sky Group Real Estate | <a href="#" className="hover:text-white">Privacy Policy</a></p>
+          <div className="mt-3 md:mt-0">
+            <a href="#top" className="bg-amber-700/50 hover:bg-amber-600 px-4 py-2 rounded-full transition-colors">
+              Back to Top
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -85,6 +85,10 @@ const config = {
         "pulse-slow": {
           "0%, 100%": { opacity: "0.8" },
           "50%": { opacity: "0.4" },
+        },
+        bounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-15px)" },
         }
       },
       animation: {
@@ -92,6 +96,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 4s ease-in-out infinite",
         "pulse-slow": "pulse-slow 3s infinite",
+        "bounce-slow": "bounce 3s ease-in-out infinite",
       },
       padding: {
         "section-padding": "6rem 0",
