@@ -1,11 +1,13 @@
 
 import { useEffect } from "react";
+import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import PrizeDetails from "@/components/PrizeDetails";
 import HowToEnter from "@/components/HowToEnter";
 import CountdownTimer from "@/components/CountdownTimer";
 import RulesSection from "@/components/RulesSection";
 import ContactSection from "@/components/ContactSection";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -118,6 +120,8 @@ const Index = () => {
 
   return (
     <div className="overflow-hidden">
+      <Navigation />
+      
       <Header 
         title="Win a Curated Cheese Board Gift Basket!" 
         description="Perfect for Vaughan families looking for a cozy night in! Enter for a chance to win our exclusive cheese board package valued at $175. No purchase necessary."
@@ -125,22 +129,34 @@ const Index = () => {
         heroImage={prizeImages[0]}
       />
       
-      {/* Rearranged sections for better conversion */}
-      <CountdownTimer endDate={endDate} />
+      {/* Ensure consistent section spacing and transitions between sections */}
+      <div id="countdown" className="scroll-mt-16">
+        <CountdownTimer endDate={endDate} />
+      </div>
       
-      <PrizeDetails 
-        images={prizeImages}
-        title="Gourmet Cheese Board Gift Basket"
-        description="This curated gift basket is perfect for an at-home charcuterie night. Featuring a handcrafted wooden cheese board, assortment of fine cheeses, olives, sea salt pretzels, chocolate bark, and a premium knife set—everything you need for a delicious evening with your loved ones."
-        features={prizeFeatures}
-        benefits={benefitsList}
-      />
+      <div id="prize" className="scroll-mt-16">
+        <PrizeDetails 
+          images={prizeImages}
+          title="Gourmet Cheese Board Gift Basket"
+          description="This curated gift basket is perfect for an at-home charcuterie night. Featuring a handcrafted wooden cheese board, assortment of fine cheeses, olives, sea salt pretzels, chocolate bark, and a premium knife set—everything you need for a delicious evening with your loved ones."
+          features={prizeFeatures}
+          benefits={benefitsList}
+        />
+      </div>
       
-      <HowToEnter />
+      <div id="howToEnter" className="scroll-mt-16">
+        <HowToEnter />
+      </div>
       
-      <RulesSection rules={rules} />
+      <div id="rules" className="scroll-mt-16">
+        <RulesSection rules={rules} />
+      </div>
       
-      <ContactSection contactInfo={contactInfo} />
+      <div id="contact" className="scroll-mt-16">
+        <ContactSection contactInfo={contactInfo} />
+      </div>
+      
+      <ScrollToTopButton />
     </div>
   );
 };

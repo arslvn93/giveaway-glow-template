@@ -65,9 +65,12 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
   }, []);
   
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-100/40 to-white -z-10"></div>
+    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-amber-50/50 to-white">
+      {/* Background decoration - matching style with other sections */}
+      <div className="absolute inset-0 -z-10 opacity-30">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-amber-200 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-300 rounded-full filter blur-3xl"></div>
+      </div>
       
       {/* Decorative shapes */}
       <div className="absolute top-20 right-10 w-40 h-40 bg-amber-500/10 rounded-full animate-pulse-slow"></div>
@@ -79,6 +82,7 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
           <h2 className="rules-title text-3xl md:text-5xl font-bold mb-4 text-amber-700">
             Rules & Eligibility
           </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-amber-300 mx-auto mb-6"></div>
           <p className="rules-description text-gray-700 max-w-2xl mx-auto">
             Please review the following rules and eligibility requirements before entering the giveaway.
           </p>
