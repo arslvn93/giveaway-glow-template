@@ -70,6 +70,7 @@ const Index = () => {
         description={headerContent.description}
         ctaText={headerContent.ctaText}
         heroImage={headerContent.heroImage}
+        secondaryImage={headerContent.secondaryImage} // Add secondary image prop
       />
       
       {/* Ensure consistent section spacing and transitions between sections */}

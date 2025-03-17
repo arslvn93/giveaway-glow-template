@@ -12,9 +12,10 @@ interface HeaderProps {
   description: string;
   ctaText: string;
   heroImage: string;
+  secondaryImage?: string; // Add optional secondary image prop
 }
 
-const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
+const Header = ({ title, description, ctaText, heroImage, secondaryImage }: HeaderProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -112,8 +113,10 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
   ];
   
   const defaultHeroImage = fallbackImages[0];
+  const defaultSecondaryImage = fallbackImages[1];
   
   const mainImage = heroImage || defaultHeroImage;
+  const secondImage = secondaryImage || defaultSecondaryImage;
   
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     console.log("Image failed to load:", e.currentTarget.src);
@@ -175,7 +178,7 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
           <div className="secondary-image mt-8 relative mx-auto lg:hidden w-3/4">
             <div className="relative rounded-xl overflow-hidden shadow-lg">
               <img 
-                src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=500" 
+                src={secondImage} 
                 alt="Cheese assortment" 
                 className="w-full h-auto object-cover"
                 onError={handleImageError}
@@ -208,7 +211,7 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
           <div className="secondary-image absolute -left-16 bottom-20 hidden lg:block w-48 h-48 z-20">
             <div className="relative rounded-xl overflow-hidden shadow-lg transform -rotate-6 hover:rotate-0 transition-transform duration-300">
               <img 
-                src="https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=500" 
+                src={secondImage} 
                 alt="Cheese assortment" 
                 className="w-full h-full object-cover"
                 onError={handleImageError}

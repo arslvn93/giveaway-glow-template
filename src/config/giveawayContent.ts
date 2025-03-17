@@ -27,6 +27,7 @@ export const headerContent = {
   description: "Perfect for Vaughan families looking for a cozy night in! Enter for a chance to win our exclusive cheese board package valued at $175. No purchase necessary.",
   ctaText: "Enter Now",
   heroImage: prizeImages[0],
+  secondaryImage: prizeImages[1], // Add secondary image for the header
 };
 
 // Navigation section
