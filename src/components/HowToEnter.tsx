@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -253,19 +252,6 @@ const HowToEnter = () => {
                   </div>
                 </form>
               )}
-            </div>
-
-            {/* Testimonial callout */}
-            <div className="absolute -bottom-6 -right-6 max-w-xs z-20 hidden lg:block">
-              <div className="bg-white p-4 rounded-lg shadow-lg border border-amber-200 rotate-3">
-                <div className="flex items-start space-x-3">
-                  <div className="text-amber-500 text-xl">"</div>
-                  <div>
-                    <p className="text-sm italic text-amber-700">Entering was so easy! I got my prize within a week of winning!</p>
-                    <p className="text-xs font-medium text-amber-600 mt-1">— Previous Winner</p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
