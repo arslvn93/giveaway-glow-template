@@ -1,133 +1,115 @@
 
-import { useEffect, useRef } from 'react';
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
-gsap.registerPlugin(ScrollTrigger);
+interface FooterProps {
+  brokerageName: string;
+  brokerageAddress: string;
+  email: string;
+  phone: string;
+}
 
-const Footer = () => {
-  const footerRef = useRef<HTMLDivElement>(null);
+const Footer = ({ brokerageName, brokerageAddress, email, phone }: FooterProps) => {
+  const [emailInput, setEmailInput] = useState("");
+  const { toast } = useToast();
   
-  useEffect(() => {
-    if (!footerRef.current) return;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (emailInput.trim() === "") {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Please enter your email address"
+      });
+      return;
+    }
     
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footerRef.current,
-        start: "top 90%",
-        end: "bottom 90%",
-        toggleActions: "play none none none"
-      }
+    // Submit logic would go here
+    toast({
+      title: "Successfully subscribed!",
+      description: "Thank you for joining our newsletter."
     });
-    
-    tl.from(".footer-content", {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    });
-    
-    return () => {
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
-      }
-      tl.kill();
-    };
-  }, []);
-  
-  const socialLinks = [
-    { icon: <Facebook size={20} />, href: "#" },
-    { icon: <Instagram size={20} />, href: "#" },
-    { icon: <Twitter size={20} />, href: "#" },
-  ];
-  
-  const contactInfo = [
-    { icon: <Mail size={18} />, text: "contact@giveaway.com" },
-    { icon: <Phone size={18} />, text: "+1 (555) 123-4567" },
-    { icon: <MapPin size={18} />, text: "123 Giveaway St, City, State" },
-  ];
-  
-  const navLinks = [
-    { text: "About Us", href: "#" },
-    { text: "FAQ", href: "#" },
-    { text: "Terms & Conditions", href: "#" },
-    { text: "Privacy Policy", href: "#" },
-  ];
+    setEmailInput("");
+  };
   
   return (
-    <footer ref={footerRef} className="bg-giveaway-dark-purple text-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
-            <h3 className="text-xl font-bold mb-6">Giveaway HQ</h3>
-            <p className="text-white/70 mb-6">
-              We host high-quality giveaways to reward our community. Join us for a chance to win amazing prizes.
+    <footer className="bg-amber-800 text-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-80 h-80 bg-white/5 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-64 h-64 bg-white/5 rounded-full filter blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold mb-4 border-b border-amber-700 pb-2">About Us</h3>
+            <p className="text-amber-100/80">
+              The Sky Group Real Estate specializes in helping Vaughan families find their perfect homes.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((link, index) => (
-                <a 
-                  key={index} 
-                  href={link.href}
-                  className="bg-white/10 hover:bg-white/20 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
-                >
-                  {link.icon}
-                </a>
-              ))}
+            <div className="flex flex-col space-y-2 text-sm text-amber-100/80">
+              <a href={`mailto:${email}`} className="hover:text-white transition-colors">
+                {email}
+              </a>
+              <a href={`tel:${phone}`} className="hover:text-white transition-colors">
+                {phone}
+              </a>
             </div>
           </div>
           
-          <div>
-            <h3 className="text-xl font-bold mb-6">Contact Us</h3>
-            <ul className="space-y-4">
-              {contactInfo.map((item, index) => (
-                <li key={index} className="flex items-center">
-                  <span className="mr-3 text-giveaway-purple">{item.icon}</span>
-                  <span className="text-white/70">{item.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          <div>
-            <h3 className="text-xl font-bold mb-6">Quick Links</h3>
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold mb-4 border-b border-amber-700 pb-2">Quick Links</h3>
             <ul className="space-y-3">
-              {navLinks.map((link, index) => (
+              {["Home", "About", "Listings", "Contact", "Privacy Policy"].map((link, index) => (
                 <li key={index}>
-                  <a 
-                    href={link.href}
-                    className="text-white/70 hover:text-white transition-colors duration-300"
-                  >
-                    {link.text}
+                  <a href="#" className="text-amber-100/80 hover:text-white transition-colors inline-flex items-center">
+                    <ArrowRight className="mr-2 w-3 h-3" />
+                    {link}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
           
-          <div>
-            <h3 className="text-xl font-bold mb-6">Newsletter</h3>
-            <p className="text-white/70 mb-4">
-              Subscribe to get updates on our latest giveaways.
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold mb-4 border-b border-amber-700 pb-2">Newsletter</h3>
+            <p className="text-amber-100/80">
+              Subscribe to our newsletter for the latest updates on giveaways and property listings.
             </p>
-            <form className="flex">
+            <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
               <input 
                 type="email" 
-                placeholder="Your email"
-                className="bg-white/10 text-white px-4 py-2 rounded-l-md w-full focus:outline-none focus:ring-2 focus:ring-giveaway-purple"
+                placeholder="Your email address"
+                value={emailInput}
+                onChange={(e) => setEmailInput(e.target.value)}
+                className="px-4 py-2 rounded-md bg-amber-700/50 border border-amber-600 text-white placeholder:text-amber-300/50 focus:outline-none focus:ring-2 focus:ring-amber-400"
               />
               <button 
                 type="submit"
-                className="bg-giveaway-purple hover:bg-giveaway-purple/80 px-4 py-2 rounded-r-md transition-colors duration-300"
+                className="px-4 py-2 bg-amber-600 hover:bg-amber-500 transition-colors rounded-md text-white font-medium"
               >
                 Subscribe
               </button>
             </form>
           </div>
+          
+          <div className="space-y-6">
+            <h3 className="text-xl font-bold mb-4 border-b border-amber-700 pb-2">Brokerage Info</h3>
+            <p className="text-amber-100/80 font-medium">
+              {brokerageName}
+            </p>
+            <p className="text-amber-100/80">
+              {brokerageAddress}
+            </p>
+            <div className="pt-3 text-sm text-amber-100/60">
+              <p>This site is not intended to solicit buyers or sellers who are currently under contract.</p>
+            </div>
+          </div>
         </div>
         
-        <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/50 text-sm">
-          &copy; {new Date().getFullYear()} Giveaway Template. All rights reserved.
+        <div className="mt-12 pt-6 border-t border-amber-700/50 text-center text-amber-100/60 text-sm">
+          <p>Copyright © 2025 The Sky Group Real Estate. All rights reserved.</p>
         </div>
       </div>
     </footer>

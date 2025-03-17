@@ -7,6 +7,7 @@ import CountdownTimer from "@/components/CountdownTimer";
 import PreviousWinners from "@/components/PreviousWinners";
 import RulesSection from "@/components/RulesSection";
 import Footer from "@/components/Footer";
+import ContactSection from "@/components/ContactSection";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -27,6 +28,30 @@ const prizeFeatures = [
   "Free delivery directly to your door in Vaughan",
   "Perfect for a cozy night in with family and friends",
 ];
+
+const benefitsList = [
+  {
+    title: "Cozy at Home",
+    description: "Enjoy premium cheeses, pretzels, olives and more without stepping outside."
+  },
+  {
+    title: "Perfect for Families",
+    description: "Share a delicious evening with your loved ones."
+  },
+  {
+    title: "A Taste of Luxury",
+    description: "Indulge in high-quality ingredients brought right to your door."
+  }
+];
+
+const contactInfo = {
+  email: "info@theskygroup.ca",
+  phone: "289-210-5250",
+  brokerage: {
+    name: "The Real Brokerage, Inc.",
+    address: "133 Richmond Street West Suite 302"
+  }
+};
 
 const winners = [
   {
@@ -128,6 +153,7 @@ const Index = () => {
         title="Gourmet Cheese Board Gift Basket"
         description="This curated gift basket is perfect for an at-home charcuterie night. Featuring a handcrafted wooden cheese board, assortment of fine cheeses, olives, sea salt pretzels, chocolate bark, and a premium knife set—everything you need for a delicious evening with your loved ones."
         features={prizeFeatures}
+        benefits={benefitsList}
       />
       
       <HowToEnter />
@@ -138,7 +164,14 @@ const Index = () => {
       
       <RulesSection rules={rules} />
       
-      <Footer />
+      <ContactSection contactInfo={contactInfo} />
+      
+      <Footer 
+        brokerageName={contactInfo.brokerage.name}
+        brokerageAddress={contactInfo.brokerage.address}
+        email={contactInfo.email}
+        phone={contactInfo.phone}
+      />
     </div>
   );
 };

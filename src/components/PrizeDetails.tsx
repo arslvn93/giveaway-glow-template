@@ -8,17 +8,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface Benefit {
+  title: string;
+  description: string;
+}
+
 interface PrizeDetailsProps {
   images: string[];
   title: string;
   description: string;
   features: string[];
+  benefits?: Benefit[];
 }
 
-const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProps) => {
+const PrizeDetails = ({ images, title, description, features, benefits }: PrizeDetailsProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const benefitsRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     if (!sectionRef.current) return;
@@ -51,6 +58,22 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
       duration: 0.5,
       ease: "power3.out"
     }, "-=0.4");
+
+    if (benefitsRef.current) {
+      tl.from(benefitsRef.current, {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power3.out"
+      }, "-=0.2")
+      .from(".benefit-card", {
+        y: 20,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.6,
+        ease: "power3.out"
+      }, "-=0.5");
+    }
     
     // Add floating animations to decorative elements
     gsap.to(".prize-decoration", {
@@ -147,6 +170,34 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
             </div>
           </div>
         </div>
+
+        {/* Benefits Section */}
+        {benefits && benefits.length > 0 && (
+          <div ref={benefitsRef} className="mt-24 md:mt-32">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                Why You Don't Want To Miss This:
+              </h3>
+              <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto"></div>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {benefits.map((benefit, index) => (
+                <div key={index} className="benefit-card bg-white rounded-xl shadow-lg p-6 border border-amber-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                  <h4 className="text-xl font-bold mb-3 text-amber-700">{benefit.title}</h4>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </div>
+              ))}
+            </div>
+            
+            <div className="mt-10 text-center">
+              <button className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+                CLICK HERE TO REGISTER
+              </button>
+              <p className="mt-3 text-gray-600 font-medium">Your chance to win a gourmet experience!</p>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
