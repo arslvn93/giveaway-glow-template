@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { Check, Gift, Award, Star } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -191,30 +192,34 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
                 <p className="text-gray-600 md:text-lg leading-relaxed">{description}</p>
                 
                 <div className="pt-4">
-                  <h4 className="text-xl font-semibold flex items-center text-gray-800 mb-4">
+                  <h4 className="text-xl font-semibold flex items-center text-gray-800 mb-6">
                     <Star size={20} className="text-amber-500 mr-2" /> 
                     What's Included:
                   </h4>
                   
-                  <ul className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {features && features.length > 0 ? (
                       features.map((feature, index) => (
-                        <li key={index} className="feature-item flex items-start hover:translate-x-1 transition-transform duration-300">
-                          <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 mt-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mr-3">
-                            <Check size={14} />
-                          </span>
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
+                        <Card key={index} className="feature-item border-amber-100 bg-amber-50/60 hover:bg-amber-50 transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                          <CardContent className="p-4 flex items-start space-x-3">
+                            <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center text-white">
+                              <Check size={16} />
+                            </div>
+                            <div>
+                              <p className="text-gray-700 font-medium">{feature}</p>
+                            </div>
+                          </CardContent>
+                        </Card>
                       ))
                     ) : (
-                      <li className="feature-item text-gray-500 italic">
+                      <p className="text-gray-500 italic">
                         Features will be announced soon!
-                      </li>
+                      </p>
                     )}
-                  </ul>
+                  </div>
                 </div>
                 
-                <div className="pt-4">
+                <div className="pt-8">
                   <a href="#howToEnter" className="inline-block w-full py-4 text-center rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                     ENTER GIVEAWAY NOW
                   </a>
