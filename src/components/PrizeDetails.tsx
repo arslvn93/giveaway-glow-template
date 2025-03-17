@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 import { Check, Gift, Award, Star } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -120,9 +119,23 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
           </p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          <div ref={imagesRef} className="relative mx-auto">
-            {/* Main Carousel */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-start">
+          {/* Left side - Image */}
+          <div ref={imagesRef} className="relative">
+            {/* Featured Image (outside of carousel for larger display) */}
+            <div className="bg-white p-5 rounded-2xl shadow-xl mb-8 hidden md:block">
+              <div className="overflow-hidden rounded-xl shadow-md border border-amber-200">
+                <AspectRatio ratio={4/3} className="bg-muted">
+                  <img 
+                    src={images[0]} 
+                    alt="Featured Prize" 
+                    className="object-cover w-full h-full transition-all duration-700 hover:scale-105"
+                  />
+                </AspectRatio>
+              </div>
+            </div>
+            
+            {/* Main Carousel - Visible on all screens */}
             <div className="bg-white p-5 rounded-2xl shadow-xl relative z-10 max-w-md mx-auto">
               <Carousel className="w-full">
                 <CarouselContent>
@@ -166,6 +179,7 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
             <div className="absolute top-1/3 -right-12 w-24 h-24 rounded-full bg-amber-100/50 prize-decoration"></div>
           </div>
           
+          {/* Right side - Content */}
           <div ref={contentRef} className="space-y-8 relative">
             <div className="relative z-10 bg-white/90 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-amber-200/30">
               <div className="space-y-6">
