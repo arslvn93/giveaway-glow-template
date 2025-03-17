@@ -158,14 +158,20 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
                 Here's what makes this curated basket so special:
               </h4>
               <ul className="space-y-4">
-                {features.map((feature, index) => (
-                  <li key={index} className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mr-4">
-                      <Check size={16} />
-                    </span>
-                    <span className="text-gray-700">{feature}</span>
+                {features && features.length > 0 ? (
+                  features.map((feature, index) => (
+                    <li key={index} className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                      <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mr-4">
+                        <Check size={16} />
+                      </span>
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md">
+                    <span className="text-gray-700">No features available</span>
                   </li>
-                ))}
+                )}
               </ul>
             </div>
           </div>
