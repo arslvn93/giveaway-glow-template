@@ -1,99 +1,15 @@
 
-import { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
-import { Mail, Share2, Users, Check, ArrowRight, Clock, Trophy, Gift } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
-
-interface Step {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
+import { Mail, Share2, Users, Check, Clock, Trophy, Gift } from 'lucide-react';
 
 const HowToEnter = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [entrants, setEntrants] = useState(482); // Mock data
-  
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const stepsRef = useRef<HTMLDivElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
-  
-  const steps: Step[] = [
-    {
-      icon: <Mail className="h-6 w-6" />,
-      title: "Fill Out the Form",
-      description: "Enter your email address and name in the form and submit it.",
-    },
-    {
-      icon: <Share2 className="h-6 w-6" />,
-      title: "Share with Friends",
-      description: "Share this giveaway on social media for extra entries.",
-    },
-    {
-      icon: <Users className="h-6 w-6" />,
-      title: "Confirm Entry",
-      description: "Check your email to confirm your entry and you're all set!",
-    }
-  ];
-  
-  useEffect(() => {
-    if (!sectionRef.current) return;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top 70%",
-        end: "bottom 70%",
-        toggleActions: "play none none none"
-      }
-    });
-    
-    tl.from(".section-title", {
-      y: 30,
-      opacity: 0,
-      duration: 0.6,
-      ease: "power3.out"
-    })
-    .from(".step-item", {
-      y: 40,
-      opacity: 0,
-      stagger: 0.2,
-      duration: 0.7,
-      ease: "power3.out"
-    }, "-=0.3")
-    .from(formRef.current, {
-      y: 30,
-      opacity: 0,
-      duration: 0.7,
-      ease: "power3.out"
-    }, "-=0.5");
-    
-    // Floating animations for decorative elements
-    gsap.to(".floating-circle", {
-      y: "-15px",
-      duration: 2.5,
-      ease: "power1.inOut",
-      repeat: -1,
-      yoyo: true,
-      stagger: 0.3
-    });
-    
-    return () => {
-      if (tl.scrollTrigger) {
-        tl.scrollTrigger.kill();
-      }
-      tl.kill();
-    };
-  }, []);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -105,7 +21,6 @@ const HowToEnter = () => {
       setIsSuccess(true);
       setEmail('');
       setName('');
-      setEntrants(prev => prev + 1);
       
       // Reset success message after 3 seconds
       setTimeout(() => {
@@ -114,75 +29,101 @@ const HowToEnter = () => {
     }, 1500);
   };
   
+  const steps = [
+    {
+      icon: <Mail className="h-6 w-6" />,
+      title: "Fill Out the Form",
+      description: "Enter your email address and name in the form and submit it."
+    },
+    {
+      icon: <Share2 className="h-6 w-6" />,
+      title: "Share with Friends",
+      description: "Share this giveaway on social media for extra entries."
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: "Confirm Entry",
+      description: "Check your email to confirm your entry and you're all set!"
+    }
+  ];
+
+  const benefits = [
+    { 
+      icon: <Clock className="h-5 w-5" />, 
+      title: "Quick & Easy", 
+      desc: "Takes less than a minute" 
+    },
+    { 
+      icon: <Trophy className="h-5 w-5" />, 
+      title: "Multiple Entries", 
+      desc: "Share for more chances" 
+    },
+    { 
+      icon: <Gift className="h-5 w-5" />, 
+      title: "Premium Prize", 
+      desc: "Valued at $175" 
+    }
+  ];
+
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-amber-50 to-amber-100/70 py-16">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-20 left-10 w-40 h-40 floating-circle bg-amber-500/10 rounded-full"></div>
-        <div className="absolute bottom-40 right-20 w-60 h-60 floating-circle bg-amber-600/10 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/3 w-20 h-20 floating-circle bg-amber-400/20 rounded-full"></div>
-        <div className="absolute bottom-1/4 left-1/5 w-32 h-32 floating-circle bg-amber-300/15 rounded-full animate-pulse-slow"></div>
-        <div className="absolute top-1/3 right-1/4 w-24 h-24 floating-circle bg-amber-200/20 rounded-full"></div>
-      </div>
-      
+    <section className="bg-amber-50 py-16">
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-3xl md:text-5xl font-bold text-center mb-10">
-          <span className="text-amber-700">How to Enter</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-amber-800">
+          How to Enter
         </h2>
 
         <div className="max-w-4xl mx-auto text-center mb-12">
-          <p className="text-amber-700/80 text-lg">Getting started is easy! Follow these simple steps to enter our giveaway.</p>
+          <p className="text-amber-700 text-lg">
+            Getting started is easy! Follow these simple steps to enter our giveaway.
+          </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Left column with steps */}
-          <div ref={stepsRef} className="space-y-8">
+          <div className="space-y-6">
             {steps.map((step, index) => (
-              <div key={index} className="step-item group bg-white p-6 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                    {step.icon}
+              <Card key={index} className="border border-amber-200 shadow hover:shadow-md transition-all duration-300">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white flex items-center justify-center">
+                      {step.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold mb-2 text-amber-800">{step.title}</h3>
+                      <p className="text-amber-700">{step.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2 text-amber-800">{step.title}</h3>
-                    <p className="text-amber-700/80">{step.description}</p>
-                  </div>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
             ))}
 
-            {/* Additional benefits cards */}
+            {/* Benefits cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-              {[
-                { icon: <Clock className="h-5 w-5" />, title: "Quick & Easy", desc: "Takes less than a minute" },
-                { icon: <Trophy className="h-5 w-5" />, title: "Multiple Entries", desc: "Share for more chances" },
-                { icon: <Gift className="h-5 w-5" />, title: "Premium Prize", desc: "Valued at $175" },
-              ].map((item, i) => (
-                <div key={i} className="bg-white rounded-xl p-4 shadow border border-amber-200 hover:shadow-md transition-all duration-300">
-                  <div className="flex flex-col items-center text-center">
-                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mb-3 text-amber-600">
-                      {item.icon}
+              {benefits.map((item, i) => (
+                <Card key={i} className="border border-amber-200 shadow">
+                  <CardContent className="p-4">
+                    <div className="flex flex-col items-center text-center">
+                      <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mb-3 text-amber-600">
+                        {item.icon}
+                      </div>
+                      <h4 className="font-medium text-amber-800 mb-1">{item.title}</h4>
+                      <p className="text-sm text-amber-600">{item.desc}</p>
                     </div>
-                    <h4 className="font-medium text-amber-800 mb-1">{item.title}</h4>
-                    <p className="text-sm text-amber-600">{item.desc}</p>
-                  </div>
-                </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
           
           {/* Right column with form */}
-          <div ref={formRef} className="relative">
-            {/* Card decoration */}
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-500/20 rounded-2xl transform rotate-1 scale-105 -z-10 blur-sm"></div>
-            
-            <Card className="border border-amber-200 shadow-xl">
-              <CardContent className="p-8">
-                <div className="mb-8 flex items-center justify-between">
+          <div>
+            <Card className="border border-amber-200 shadow-lg">
+              <CardContent className="p-6">
+                <div className="mb-6 flex items-center justify-between">
                   <h3 className="text-2xl font-semibold text-amber-800">Enter Now</h3>
-                  <div className="bg-amber-100 px-4 py-2 rounded-full flex items-center">
-                    <Users size={18} className="text-amber-600 mr-2" />
-                    <span className="font-semibold text-amber-700">{entrants} entries</span>
+                  <div className="bg-amber-100 px-3 py-1 rounded-full flex items-center">
+                    <Users size={16} className="text-amber-600 mr-2" />
+                    <span className="font-semibold text-amber-700">482 entries</span>
                   </div>
                 </div>
                 
@@ -195,11 +136,11 @@ const HowToEnter = () => {
                     <p className="text-green-600">Check your email to confirm your entry.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                      <Label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-700">
+                      <label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-700">
                         Your Name
-                      </Label>
+                      </label>
                       <Input
                         id="name"
                         type="text"
@@ -207,14 +148,14 @@ const HowToEnter = () => {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         required
-                        className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                        className="border-amber-200 focus:border-amber-400"
                       />
                     </div>
                     
                     <div>
-                      <Label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-700">
+                      <label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-700">
                         Email Address
-                      </Label>
+                      </label>
                       <Input
                         id="email"
                         type="email"
@@ -222,17 +163,16 @@ const HowToEnter = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                        className="border-amber-200 focus:border-amber-400"
                       />
                     </div>
                     
                     <Button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="w-full py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-md hover:shadow-lg transition-all duration-300 group border border-amber-400"
+                      className="w-full py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       {isSubmitting ? "Processing..." : "Enter Giveaway"}
-                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                     </Button>
                     
                     <div className="pt-4 border-t border-amber-100">
@@ -243,7 +183,7 @@ const HowToEnter = () => {
                             key={i} 
                             variant="outline" 
                             size="sm"
-                            className="flex-1 border-amber-300 hover:bg-amber-100 hover:text-amber-700 text-amber-600 transition-all duration-300"
+                            className="flex-1 border-amber-300 hover:bg-amber-100 hover:text-amber-700 text-amber-600"
                           >
                             {platform}
                           </Button>
