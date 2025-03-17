@@ -26,7 +26,7 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
-        start: "top 70%",
+        start: "top 75%", // Adjusted trigger point
         end: "bottom 70%",
         toggleActions: "play none none none"
       }
@@ -71,7 +71,7 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden">
+    <section ref={sectionRef} className="py-28 md:py-36 relative overflow-visible" id="prizeDetails">
       {/* Background decoration */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-giveaway-light-purple/20 rounded-full filter blur-3xl"></div>
@@ -88,7 +88,7 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div ref={imagesRef} className="space-y-8">
+          <div ref={imagesRef} className="space-y-8 mx-auto w-full max-w-lg">
             <Carousel className="w-full max-w-md mx-auto">
               <CarouselContent>
                 {images.map((image, index) => (
@@ -134,7 +134,7 @@ const PrizeDetails = ({ images, title, description, features }: PrizeDetailsProp
                 <span className="w-8 h-1 bg-gradient-to-r from-giveaway-purple to-giveaway-pink mr-3"></span>
                 What's Included:
               </h4>
-              <ul className="space-y-5">
+              <ul className="space-y-4">
                 {features.map((feature, index) => (
                   <li key={index} className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                     <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-giveaway-purple to-giveaway-pink text-white mr-4">
