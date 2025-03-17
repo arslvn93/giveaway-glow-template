@@ -4,7 +4,6 @@ import Header from "@/components/Header";
 import PrizeDetails from "@/components/PrizeDetails";
 import HowToEnter from "@/components/HowToEnter";
 import CountdownTimer from "@/components/CountdownTimer";
-import PreviousWinners from "@/components/PreviousWinners";
 import RulesSection from "@/components/RulesSection";
 import ContactSection from "@/components/ContactSection";
 import gsap from "gsap";
@@ -51,27 +50,6 @@ const contactInfo = {
     address: "133 Richmond Street West Suite 302"
   }
 };
-
-const winners = [
-  {
-    name: "Jane Smith",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=688&auto=format&fit=crop",
-    prize: "Gourmet Cheese Basket",
-    testimonial: "The cheese basket was amazing! My family loved our cheese night. Such high quality products!",
-  },
-  {
-    name: "Mark Johnson", 
-    image: "https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=774&auto=format&fit=crop",
-    prize: "Wine & Cheese Package",
-    testimonial: "Everything arrived perfectly packaged. The wooden board is beautiful and the cheeses were delicious.",
-  },
-  {
-    name: "Sarah Williams",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop",
-    prize: "Charcuterie Gift Set",
-    testimonial: "Our family had such a wonderful evening enjoying this prize. The variety of cheeses was perfect!",
-  },
-];
 
 const rules = [
   {
@@ -160,13 +138,9 @@ const Index = () => {
       
       <HowToEnter />
       
-      <PreviousWinners winners={winners} />
-      
       <RulesSection rules={rules} />
       
       <ContactSection contactInfo={contactInfo} />
-      
-      {/* Footer component has been removed */}
     </div>
   );
 };
