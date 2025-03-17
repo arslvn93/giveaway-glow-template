@@ -47,19 +47,23 @@ const PreviousWinners = ({ winners }: PreviousWinnersProps) => {
     }, "-=0.3");
     
     // Add hover animations
-    gsap.utils.toArray(".winner-card").forEach((card) => {
-      const image = card.querySelector(".winner-image");
-      const overlay = card.querySelector(".image-overlay");
+    const cards = gsap.utils.toArray<HTMLElement>(".winner-card");
+    
+    cards.forEach((card) => {
+      const image = card.querySelector<HTMLElement>(".winner-image");
+      const overlay = card.querySelector<HTMLElement>(".image-overlay");
       
-      card.addEventListener("mouseenter", () => {
-        gsap.to(image, { scale: 1.1, duration: 0.4 });
-        gsap.to(overlay, { opacity: 0.7, duration: 0.4 });
-      });
-      
-      card.addEventListener("mouseleave", () => {
-        gsap.to(image, { scale: 1, duration: 0.4 });
-        gsap.to(overlay, { opacity: 0.4, duration: 0.4 });
-      });
+      if (image && overlay) {
+        card.addEventListener("mouseenter", () => {
+          gsap.to(image, { scale: 1.1, duration: 0.4 });
+          gsap.to(overlay, { opacity: 0.7, duration: 0.4 });
+        });
+        
+        card.addEventListener("mouseleave", () => {
+          gsap.to(image, { scale: 1, duration: 0.4 });
+          gsap.to(overlay, { opacity: 0.4, duration: 0.4 });
+        });
+      }
     });
     
     return () => {
