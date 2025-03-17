@@ -162,7 +162,7 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
             {description}
           </p>
           <Button 
-            className="header-cta text-lg px-8 py-6 rounded-full bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-amber-400 font-bold flex items-center"
+            className="header-cta text-lg px-8 py-6 rounded-full bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-amber-400 font-bold flex items-center relative z-20"
           >
             <span className="mr-2">{ctaText}</span> 
             <ArrowRight className="h-6 w-6" />
