@@ -12,7 +12,6 @@ interface Step {
   icon: React.ReactNode;
   title: string;
   description: string;
-  image: string;
 }
 
 const HowToEnter = () => {
@@ -31,19 +30,16 @@ const HowToEnter = () => {
       icon: <Mail className="h-6 w-6" />,
       title: "Fill Out the Form",
       description: "Enter your email address and name in the form and submit it.",
-      image: "https://images.unsplash.com/photo-1579389083395-4507e98b5e67?q=80&w=500"
     },
     {
       icon: <Share2 className="h-6 w-6" />,
       title: "Share with Friends",
       description: "Share this giveaway on social media for extra entries.",
-      image: "https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=500"
     },
     {
       icon: <Users className="h-6 w-6" />,
       title: "Confirm Entry",
       description: "Check your email to confirm your entry and you're all set!",
-      image: "https://images.unsplash.com/photo-1559181567-c3190ca9959b?q=80&w=500"
     }
   ];
   
@@ -117,7 +113,7 @@ const HowToEnter = () => {
   };
   
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-amber-50 to-amber-100/70">
+    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-amber-50 to-amber-100/70 py-16">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
         <div className="absolute top-20 left-10 w-40 h-40 floating-circle bg-amber-500/10 rounded-full"></div>
@@ -137,10 +133,10 @@ const HowToEnter = () => {
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div ref={stepsRef} className="space-y-12">
+          <div ref={stepsRef} className="space-y-8">
             {steps.map((step, index) => (
-              <div key={index} className="step-item group">
-                <div className="flex items-start space-x-6 mb-4">
+              <div key={index} className="step-item group bg-white p-6 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300">
+                <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
@@ -148,13 +144,6 @@ const HowToEnter = () => {
                     <h3 className="text-xl font-semibold mb-2 text-amber-800">{step.title}</h3>
                     <p className="text-amber-700/80">{step.description}</p>
                   </div>
-                </div>
-                <div className="ml-18 pl-6 border-l-2 border-dashed border-amber-400/50">
-                  <img 
-                    src={step.image} 
-                    alt={step.title} 
-                    className="rounded-lg shadow-md object-cover h-48 w-full transform group-hover:scale-[1.02] transition-all duration-300 border border-amber-200" 
-                  />
                 </div>
               </div>
             ))}
