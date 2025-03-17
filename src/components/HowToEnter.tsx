@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, Share2, Users, Check, ArrowRight } from 'lucide-react';
+import { Mail, Share2, Users, Check, ArrowRight, Clock, Trophy, Gift } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -117,53 +117,78 @@ const HowToEnter = () => {
   };
   
   return (
-    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-white to-giveaway-light-purple/30">
+    <section ref={sectionRef} className="section-padding relative overflow-hidden bg-gradient-to-b from-amber-50 to-amber-100/70">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-20 left-10 w-40 h-40 floating-circle bg-giveaway-purple/5 rounded-full"></div>
-        <div className="absolute bottom-40 right-20 w-60 h-60 floating-circle bg-giveaway-pink/5 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/3 w-20 h-20 floating-circle bg-giveaway-purple/10 rounded-full"></div>
+        <div className="absolute top-20 left-10 w-40 h-40 floating-circle bg-amber-500/10 rounded-full"></div>
+        <div className="absolute bottom-40 right-20 w-60 h-60 floating-circle bg-amber-600/10 rounded-full"></div>
+        <div className="absolute top-1/2 left-1/3 w-20 h-20 floating-circle bg-amber-400/20 rounded-full"></div>
+        <div className="absolute bottom-1/4 left-1/5 w-32 h-32 floating-circle bg-amber-300/15 rounded-full animate-pulse-slow"></div>
+        <div className="absolute top-1/3 right-1/4 w-24 h-24 floating-circle bg-amber-200/20 rounded-full"></div>
       </div>
       
       <div className="container mx-auto px-4">
-        <h2 className="section-title text-3xl md:text-5xl font-bold text-center mb-16">
-          <span className="gradient-text">How to Enter</span>
+        <h2 className="section-title text-3xl md:text-5xl font-bold text-center mb-10">
+          <span className="text-amber-700">How to Enter</span>
         </h2>
+
+        <div className="max-w-4xl mx-auto text-center mb-12">
+          <p className="text-amber-700/80 text-lg">Getting started is easy! Follow these simple steps to enter our giveaway.</p>
+        </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div ref={stepsRef} className="space-y-12">
             {steps.map((step, index) => (
               <div key={index} className="step-item group">
                 <div className="flex items-start space-x-6 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-giveaway-purple to-giveaway-pink text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
                     {step.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-gray-600">{step.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-amber-800">{step.title}</h3>
+                    <p className="text-amber-700/80">{step.description}</p>
                   </div>
                 </div>
-                <div className="ml-18 pl-6 border-l-2 border-dashed border-giveaway-purple/30">
+                <div className="ml-18 pl-6 border-l-2 border-dashed border-amber-400/50">
                   <img 
                     src={step.image} 
                     alt={step.title} 
-                    className="rounded-lg shadow-md object-cover h-48 w-full transform group-hover:scale-[1.02] transition-all duration-300" 
+                    className="rounded-lg shadow-md object-cover h-48 w-full transform group-hover:scale-[1.02] transition-all duration-300 border border-amber-200" 
                   />
                 </div>
               </div>
             ))}
+
+            {/* Additional benefits cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+              {[
+                { icon: <Clock className="h-5 w-5" />, title: "Quick & Easy", desc: "Takes less than a minute" },
+                { icon: <Trophy className="h-5 w-5" />, title: "Multiple Entries", desc: "Share for more chances" },
+                { icon: <Gift className="h-5 w-5" />, title: "Premium Prize", desc: "Valued at $175" },
+              ].map((item, i) => (
+                <div key={i} className="bg-white rounded-xl p-4 shadow border border-amber-200 hover:shadow-md transition-all duration-300">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mb-3 text-amber-600">
+                      {item.icon}
+                    </div>
+                    <h4 className="font-medium text-amber-800 mb-1">{item.title}</h4>
+                    <p className="text-sm text-amber-600">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
           
           <div ref={formRef} className="relative">
             {/* Card decoration */}
-            <div className="absolute inset-0 bg-gradient-to-r from-giveaway-purple/20 to-giveaway-pink/20 rounded-2xl transform rotate-1 scale-105 -z-10 blur-sm"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-500/20 rounded-2xl transform rotate-1 scale-105 -z-10 blur-sm"></div>
             
-            <div className="bg-white p-8 rounded-2xl shadow-xl relative z-10">
+            <div className="bg-white p-8 rounded-2xl shadow-xl relative z-10 border border-amber-200">
               <div className="mb-8 flex items-center justify-between">
-                <h3 className="text-2xl font-semibold">Enter Now</h3>
-                <div className="bg-giveaway-light-purple px-4 py-2 rounded-full flex items-center">
-                  <Users size={18} className="text-giveaway-purple mr-2" />
-                  <span className="font-semibold text-giveaway-purple">{entrants} entries</span>
+                <h3 className="text-2xl font-semibold text-amber-800">Enter Now</h3>
+                <div className="bg-amber-100 px-4 py-2 rounded-full flex items-center">
+                  <Users size={18} className="text-amber-600 mr-2" />
+                  <span className="font-semibold text-amber-700">{entrants} entries</span>
                 </div>
               </div>
               
@@ -178,7 +203,7 @@ const HowToEnter = () => {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-700">
                       Your Name
                     </label>
                     <Input
@@ -188,12 +213,12 @@ const HowToEnter = () => {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       required
-                      className="w-full"
+                      className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-700">
                       Email Address
                     </label>
                     <Input
@@ -203,28 +228,28 @@ const HowToEnter = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full"
+                      className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
                     />
                   </div>
                   
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full py-6 rounded-full bg-gradient-to-r from-giveaway-purple to-giveaway-pink hover:from-giveaway-pink hover:to-giveaway-purple shadow-md hover:shadow-lg transition-all duration-300 group"
+                    className="w-full py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-md hover:shadow-lg transition-all duration-300 group border border-amber-400"
                   >
                     {isSubmitting ? "Processing..." : "Enter Giveaway"}
                     <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                   
-                  <div className="pt-4 border-t border-gray-100">
-                    <h4 className="text-sm font-medium mb-2">Share for Extra Entries:</h4>
+                  <div className="pt-4 border-t border-amber-100">
+                    <h4 className="text-sm font-medium mb-2 text-amber-700">Share for Extra Entries:</h4>
                     <div className="flex space-x-3">
                       {['Facebook', 'Twitter', 'Instagram'].map((platform, i) => (
                         <Button 
                           key={i} 
                           variant="outline" 
                           size="sm"
-                          className="flex-1 border-giveaway-purple/20 hover:bg-giveaway-light-purple/20 hover:text-giveaway-purple transition-all duration-300"
+                          className="flex-1 border-amber-300 hover:bg-amber-100 hover:text-amber-700 text-amber-600 transition-all duration-300"
                         >
                           {platform}
                         </Button>
@@ -232,11 +257,26 @@ const HowToEnter = () => {
                     </div>
                   </div>
                   
-                  <p className="text-xs text-center text-gray-500 mt-4">
-                    By entering, you agree to our Terms & Conditions and Privacy Policy.
-                  </p>
+                  <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 mt-4">
+                    <p className="text-xs text-center text-amber-700">
+                      By entering, you agree to our Terms & Conditions and Privacy Policy.
+                    </p>
+                  </div>
                 </form>
               )}
+            </div>
+
+            {/* Testimonial callout */}
+            <div className="absolute -bottom-6 -right-6 max-w-xs z-20 hidden lg:block">
+              <div className="bg-white p-4 rounded-lg shadow-lg border border-amber-200 rotate-3">
+                <div className="flex items-start space-x-3">
+                  <div className="text-amber-500 text-xl">"</div>
+                  <div>
+                    <p className="text-sm italic text-amber-700">Entering was so easy! I got my prize within a week of winning!</p>
+                    <p className="text-xs font-medium text-amber-600 mt-1">— Previous Winner</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
