@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
@@ -161,9 +162,10 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
             {description}
           </p>
           <Button 
-            className="header-cta text-lg px-8 py-6 rounded-full bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-amber-400 font-bold"
+            className="header-cta text-lg px-8 py-6 rounded-full bg-amber-600 text-white hover:bg-amber-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-2 border-amber-400 font-bold flex items-center"
           >
-            {ctaText} <ArrowRight className="ml-2 h-5 w-5" />
+            <span className="mr-2">{ctaText}</span> 
+            <ArrowRight className="h-6 w-6" />
           </Button>
           
           <div className="secondary-image mt-8 relative mx-auto lg:hidden w-3/4">
