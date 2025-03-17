@@ -1,4 +1,3 @@
-
 // This file centralizes all editable content for the giveaway page
 
 // Prize section
@@ -144,4 +143,61 @@ export const contactContent = {
 // Countdown
 export const countdownContent = {
   endDate: new Date("February 2, 2025") 
+};
+
+// Color scheme configuration for the entire giveaway
+export const colorScheme = {
+  primary: {
+    main: 'amber-600',
+    light: 'amber-400',
+    dark: 'amber-800',
+    gradient: 'from-amber-500 to-amber-700',
+    text: 'amber-700',
+    textLight: 'amber-500',
+    textDark: 'amber-900',
+    hover: 'amber-700',
+    border: 'amber-200',
+    background: 'amber-50',
+    accent: 'amber-100',
+    accentDark: 'amber-300',
+  },
+  secondary: {
+    main: 'white',
+    text: 'gray-700',
+    textLight: 'gray-600',
+    textDark: 'gray-800',
+    border: 'gray-200',
+    background: 'white',
+    accent: 'gray-100',
+  },
+  utility: {
+    success: 'green-600',
+    successLight: 'green-100',
+    error: 'red-600',
+    errorLight: 'red-100',
+    warning: 'yellow-600',
+    warningLight: 'yellow-100',
+    info: 'blue-600',
+    infoLight: 'blue-100',
+  },
+  gradients: {
+    header: 'from-amber-100/70 via-amber-50/40 to-transparent',
+    countdownBg: 'from-amber-800 to-amber-950',
+    countdownText: 'from-amber-200 to-amber-400',
+    prizeTitle: 'from-amber-700 to-amber-500',
+    button: 'from-amber-500 to-amber-600',
+    buttonHover: 'from-amber-600 to-amber-700',
+  },
+  shadows: {
+    small: 'shadow-md',
+    medium: 'shadow-lg',
+    large: 'shadow-xl',
+    extraLarge: 'shadow-2xl',
+    glow: 'shadow-[0_0_15px_rgba(251,191,36,0.3)]',
+  },
+  animations: {
+    float: 'animate-float',
+    pulseSlow: 'animate-pulse-slow',
+    bounceSlow: 'animate-bounce-slow',
+  }
 };

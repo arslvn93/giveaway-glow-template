@@ -19,7 +19,8 @@ import {
   howToEnterContent, 
   rulesContent, 
   contactContent, 
-  countdownContent 
+  countdownContent,
+  colorScheme
 } from "@/config/giveawayContent";
 
 // Register GSAP plugins
