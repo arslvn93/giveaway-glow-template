@@ -1,0 +1,30 @@
+
+# netlify.toml
+# Configuration file for Netlify deployment
+
+[build]
+  # Directory to change to before starting a build
+  base = "/"
+  
+  # Directory that contains the deploy-ready HTML files and assets
+  publish = "dist"
+  
+  # Default build command
+  command = "npm run build"
+
+# Redirects and rewrites
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
+# Headers to return with requests for the specified paths
+[[headers]]
+  # Define which paths this specific [[headers]] block will cover
+  for = "/*"
+    [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Environment variables
+[build.environment]
+  NODE_VERSION = "18"
