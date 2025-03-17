@@ -112,4 +112,46 @@
   .gradient-text {
     @apply text-transparent bg-clip-text bg-gradient-to-r from-giveaway-purple to-giveaway-pink;
   }
+  
+  /* Enhanced animations for parallax effects */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.7; filter: blur(10px); }
+    50% { opacity: 1; filter: blur(15px); }
+  }
+  
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin-slow 15s linear infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  /* Glass morphism utility */
+  .glass {
+    @apply backdrop-blur-lg bg-white/20 border border-white/30;
+  }
+  
+  /* Custom scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
 }
