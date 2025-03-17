@@ -1,8 +1,9 @@
 
 import { useEffect, useRef } from 'react';
-import { Check } from 'lucide-react';
+import { Check, Gift, Award, Star } from 'lucide-react';
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Card, CardContent } from "@/components/ui/card";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -94,85 +95,117 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-28 relative overflow-visible" id="prizeDetails">
+    <section 
+      ref={sectionRef} 
+      className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-amber-50/50 to-amber-100/50"
+      id="prizeDetails"
+    >
       {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-amber-100/30 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-amber-200/20 rounded-full filter blur-3xl"></div>
+      <div className="absolute inset-0 -z-10 opacity-30">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-amber-200 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-300 rounded-full filter blur-3xl"></div>
       </div>
       
-      {/* Floating decorative elements */}
-      <div className="absolute top-20 right-20 w-16 h-16 prize-decoration bg-amber-500/10 rounded-full"></div>
-      <div className="absolute bottom-40 left-20 w-24 h-24 prize-decoration bg-amber-600/10 rounded-full"></div>
-      
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-12">
-          <span className="text-amber-700">Prize Details</span>
-        </h2>
+        <div className="text-center mb-12">
+          <div className="inline-block bg-amber-100 px-4 py-2 rounded-full mb-4">
+            <span className="text-amber-800 font-semibold tracking-wide text-sm uppercase">Limited Time Offer</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-700 to-amber-500">
+            Prize Details
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-amber-500 to-amber-300 mx-auto mb-6"></div>
+          <p className="max-w-2xl mx-auto text-gray-700">
+            We've curated a premium gourmet experience to elevate your next gathering
+          </p>
+        </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div ref={imagesRef} className="space-y-8 mx-auto w-full max-w-lg">
-            <Carousel className="w-full max-w-md mx-auto">
-              <CarouselContent>
-                {images.map((image, index) => (
-                  <CarouselItem key={index}>
-                    <div className="p-1">
-                      <div className="overflow-hidden rounded-xl shadow-lg border border-amber-300/30">
-                        <AspectRatio ratio={4/3} className="bg-muted">
-                          <img 
-                            src={image} 
-                            alt={`Prize view ${index + 1}`}
-                            className="object-cover w-full h-full transition-all duration-500 hover:scale-105"
-                          />
-                        </AspectRatio>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div ref={imagesRef} className="relative mx-auto">
+            {/* Main Carousel */}
+            <div className="bg-white p-5 rounded-2xl shadow-xl relative z-10 max-w-md mx-auto">
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                        <div className="overflow-hidden rounded-xl shadow-md border border-amber-200">
+                          <AspectRatio ratio={4/3} className="bg-muted">
+                            <img 
+                              src={image} 
+                              alt={`Prize view ${index + 1}`}
+                              className="object-cover w-full h-full transition-all duration-700 hover:scale-110"
+                            />
+                          </AspectRatio>
+                        </div>
                       </div>
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-0" />
-              <CarouselNext className="right-0" />
-            </Carousel>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2 bg-white/80 hover:bg-white" />
+                <CarouselNext className="right-2 bg-white/80 hover:bg-white" />
+              </Carousel>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white shadow-lg transform -rotate-12">
+                <Gift size={24} />
+              </div>
+            </div>
             
             {/* Prize value badge */}
-            <div className="bg-white w-40 h-40 rounded-full mx-auto flex flex-col items-center justify-center border-4 border-amber-300/40 shadow-xl transform hover:rotate-12 transition-all duration-300 animate-float">
-              <span className="text-sm uppercase tracking-wider text-gray-500 font-semibold">Value</span>
-              <p className="font-bold text-3xl text-amber-700">$175</p>
-              <span className="text-xs text-gray-400">Limited Time Offer</span>
+            <div className="absolute bottom-6 -right-6 md:right-0 animate-pulse-slow z-20">
+              <div className="w-28 h-28 md:w-32 md:h-32 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full flex flex-col items-center justify-center text-white shadow-lg transform rotate-12">
+                <span className="text-xs md:text-sm uppercase tracking-wider text-amber-100">Value</span>
+                <p className="font-bold text-2xl md:text-3xl">$175</p>
+                <span className="text-xs text-amber-100 px-2 text-center">Limited Time</span>
+              </div>
             </div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -bottom-8 -left-8 w-16 h-16 rounded-full bg-amber-200/50 prize-decoration"></div>
+            <div className="absolute top-1/3 -right-12 w-24 h-24 rounded-full bg-amber-100/50 prize-decoration"></div>
           </div>
           
           <div ref={contentRef} className="space-y-8 relative">
-            {/* Decorative corner elements */}
-            <div className="absolute -top-10 -left-10 w-20 h-20 border-t-4 border-l-4 border-amber-400/30 rounded-tl-xl"></div>
-            <div className="absolute -bottom-10 -right-10 w-20 h-20 border-b-4 border-r-4 border-amber-600/30 rounded-br-xl"></div>
-            
-            <div className="pl-4 border-l-4 border-amber-500">
-              <h3 className="text-3xl md:text-4xl font-bold mb-2">{title}</h3>
-              <p className="text-lg text-gray-600">{description}</p>
-            </div>
-            
-            <div className="space-y-6 pt-4">
-              <h4 className="text-xl font-semibold flex items-center">
-                <span className="w-8 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mr-3"></span>
-                Here's what makes this curated basket so special:
-              </h4>
-              <ul className="space-y-4">
-                {features && features.length > 0 ? (
-                  features.map((feature, index) => (
-                    <li key={index} className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                      <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mr-4">
-                        <Check size={16} />
-                      </span>
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))
-                ) : (
-                  <li className="feature-item flex items-start bg-white p-4 rounded-lg shadow-md">
-                    <span className="text-gray-700">No features available</span>
-                  </li>
-                )}
-              </ul>
+            <div className="relative z-10 bg-white/90 backdrop-blur-sm p-6 md:p-8 rounded-2xl shadow-lg border border-amber-200/30">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Award className="h-8 w-8 text-amber-500" />
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-800">{title}</h3>
+                </div>
+                
+                <p className="text-gray-600 md:text-lg leading-relaxed">{description}</p>
+                
+                <div className="pt-4">
+                  <h4 className="text-xl font-semibold flex items-center text-gray-800 mb-4">
+                    <Star size={20} className="text-amber-500 mr-2" /> 
+                    What's Included:
+                  </h4>
+                  
+                  <ul className="space-y-3">
+                    {features && features.length > 0 ? (
+                      features.map((feature, index) => (
+                        <li key={index} className="feature-item flex items-start hover:translate-x-1 transition-transform duration-300">
+                          <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 mt-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 text-white mr-3">
+                            <Check size={14} />
+                          </span>
+                          <span className="text-gray-700">{feature}</span>
+                        </li>
+                      ))
+                    ) : (
+                      <li className="feature-item text-gray-500 italic">
+                        Features will be announced soon!
+                      </li>
+                    )}
+                  </ul>
+                </div>
+                
+                <div className="pt-4">
+                  <a href="#howToEnter" className="inline-block w-full py-4 text-center rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    ENTER GIVEAWAY NOW
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -180,27 +213,37 @@ const PrizeDetails = ({ images, title, description, features, benefits }: PrizeD
         {/* Benefits Section */}
         {benefits && benefits.length > 0 && (
           <div ref={benefitsRef} className="mt-20 md:mt-24">
-            <div className="text-center mb-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
                 Why You Don't Want To Miss This:
               </h3>
-              <div className="w-24 h-1 bg-gradient-to-r from-amber-400 to-amber-600 mx-auto"></div>
+              <div className="w-32 h-1 bg-gradient-to-r from-amber-500 to-amber-300 mx-auto mb-6"></div>
+              <p className="max-w-2xl mx-auto text-gray-600 mb-12">
+                This isn't just another giveaway - here's why this prize is special
+              </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
-                <div key={index} className="benefit-card bg-white rounded-xl shadow-lg p-6 border border-amber-200 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <h4 className="text-xl font-bold mb-3 text-amber-700">{benefit.title}</h4>
-                  <p className="text-gray-600">{benefit.description}</p>
-                </div>
+                <Card key={index} className="benefit-card border-amber-200 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-4">
+                      <Star className="h-6 w-6 text-amber-600" />
+                    </div>
+                    <h4 className="text-xl font-bold mb-3 text-gray-800">{benefit.title}</h4>
+                    <p className="text-gray-600">{benefit.description}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
             
-            <div className="mt-12 text-center">
-              <a href="#howToEnter" className="px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
-                CLICK HERE TO REGISTER
-              </a>
-              <p className="mt-3 text-gray-600 font-medium">Your chance to win a gourmet experience!</p>
+            <div className="mt-16 text-center">
+              <div className="bg-amber-50 border border-amber-200 rounded-xl p-6 inline-block mx-auto max-w-2xl shadow-md">
+                <p className="text-gray-700 font-medium mb-4">Don't miss your chance to win a gourmet experience!</p>
+                <a href="#howToEnter" className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-amber-500 to-amber-700 text-white font-bold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                  CLICK HERE TO REGISTER
+                </a>
+              </div>
             </div>
           </div>
         )}
