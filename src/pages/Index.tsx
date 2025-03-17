@@ -6,7 +6,6 @@ import HowToEnter from "@/components/HowToEnter";
 import CountdownTimer from "@/components/CountdownTimer";
 import PreviousWinners from "@/components/PreviousWinners";
 import RulesSection from "@/components/RulesSection";
-import Footer from "@/components/Footer";
 import ContactSection from "@/components/ContactSection";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -167,12 +166,7 @@ const Index = () => {
       
       <ContactSection contactInfo={contactInfo} />
       
-      <Footer 
-        brokerageName={contactInfo.brokerage.name}
-        brokerageAddress={contactInfo.brokerage.address}
-        email={contactInfo.email}
-        phone={contactInfo.phone}
-      />
+      {/* Footer component has been removed */}
     </div>
   );
 };
