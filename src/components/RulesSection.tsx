@@ -67,18 +67,19 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
   return (
     <section ref={sectionRef} className="section-padding relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-giveaway-light-purple/30 to-white -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-amber-100/40 to-white -z-10"></div>
       
       {/* Decorative shapes */}
-      <div className="absolute top-20 right-10 w-40 h-40 bg-giveaway-pink/5 rounded-full"></div>
-      <div className="absolute bottom-20 left-10 w-60 h-60 bg-giveaway-purple/5 rounded-full"></div>
+      <div className="absolute top-20 right-10 w-40 h-40 bg-amber-500/10 rounded-full animate-pulse-slow"></div>
+      <div className="absolute bottom-20 left-10 w-60 h-60 bg-amber-600/10 rounded-full animate-float"></div>
+      <div className="absolute top-40 left-20 w-20 h-20 bg-amber-400/10 rounded-full"></div>
       
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="rules-title text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="rules-title text-3xl md:text-5xl font-bold mb-4 text-amber-700">
             Rules & Eligibility
           </h2>
-          <p className="rules-description text-gray-600 max-w-2xl mx-auto">
+          <p className="rules-description text-gray-700 max-w-2xl mx-auto">
             Please review the following rules and eligibility requirements before entering the giveaway.
           </p>
         </div>
@@ -91,46 +92,49 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
                 alt="Rules and guidelines" 
                 className="rounded-xl shadow-xl object-cover"
               />
-              <div className="absolute -bottom-5 -right-5 bg-white rounded-lg p-4 shadow-lg">
+              <div className="absolute -bottom-5 -right-5 bg-white rounded-lg p-4 shadow-lg border border-amber-200">
                 <div className="flex items-center space-x-3">
-                  <CheckCircle2 className="text-green-500 w-6 h-6" />
-                  <span className="font-medium">Fair Selection Process</span>
+                  <CheckCircle2 className="text-amber-600 w-6 h-6" />
+                  <span className="font-medium text-amber-800">Fair Selection Process</span>
                 </div>
               </div>
             </div>
             
-            <div className="mt-8 bg-white rounded-xl shadow-lg p-6 border border-giveaway-purple/10">
-              <h3 className="text-xl font-semibold mb-4 flex items-center">
-                <AlertCircle className="text-giveaway-purple mr-2 w-5 h-5" />
+            <div className="mt-8 bg-white rounded-xl shadow-lg p-6 border border-amber-200 hover:shadow-xl transition-all duration-300">
+              <h3 className="text-xl font-semibold mb-4 flex items-center text-amber-700">
+                <AlertCircle className="text-amber-500 mr-2 w-5 h-5" />
                 Important Notice
               </h3>
-              <p className="text-gray-600">
+              <p className="text-gray-700">
                 All winners will be contacted via the email provided during entry. Make sure to check your inbox (and spam folder) regularly after the giveaway ends.
               </p>
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="mt-4 pt-4 border-t border-amber-100">
                 <div className="flex items-center space-x-2">
-                  <HelpCircle className="text-giveaway-purple w-4 h-4" />
-                  <span className="text-sm text-gray-500">Need help? Contact support@giveaway.com</span>
+                  <HelpCircle className="text-amber-500 w-4 h-4" />
+                  <span className="text-sm text-gray-600">Need help? Contact support@giveaway.com</span>
                 </div>
               </div>
             </div>
           </div>
           
           <div className="lg:col-span-2 order-1 lg:order-2">
-            <div className="accordion-container bg-white rounded-xl shadow-xl p-6 border border-giveaway-purple/10">
-              <Accordion type="single" collapsible className="w-full">
+            <div className="accordion-container bg-white rounded-xl shadow-xl p-6 border border-amber-200 relative overflow-hidden">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-amber-100 rounded-bl-full -z-0"></div>
+              
+              <Accordion type="single" collapsible className="w-full relative z-10">
                 {rules.map((rule, index) => (
-                  <AccordionItem key={index} value={`item-${index}`} className="border-b border-giveaway-purple/10 last:border-0">
-                    <AccordionTrigger className="text-left font-medium py-4 hover:text-giveaway-purple transition-colors duration-300">
+                  <AccordionItem key={index} value={`item-${index}`} className="border-b border-amber-200 last:border-0">
+                    <AccordionTrigger className="text-left font-medium py-4 hover:text-amber-600 transition-colors duration-300">
                       <div className="flex items-center">
-                        <span className="w-6 h-6 rounded-full bg-giveaway-light-purple flex items-center justify-center text-giveaway-purple text-xs font-bold mr-3">
+                        <span className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center text-amber-700 text-sm font-bold mr-3">
                           {index + 1}
                         </span>
                         {rule.question}
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="text-gray-600 pl-9">
-                      <div className="bg-giveaway-light-purple/30 p-4 rounded-lg border-l-2 border-giveaway-purple">
+                    <AccordionContent className="text-gray-700 pl-10">
+                      <div className="bg-amber-50 p-4 rounded-lg border-l-2 border-amber-500">
                         {rule.answer}
                       </div>
                     </AccordionContent>
@@ -138,14 +142,33 @@ const RulesSection = ({ rules }: RulesSectionProps) => {
                 ))}
               </Accordion>
               
-              <div className="mt-8 flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-gray-100">
-                <p className="text-sm text-gray-500 mb-4 sm:mb-0">
+              <div className="mt-8 flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-amber-100 relative z-10">
+                <p className="text-sm text-gray-600 mb-4 sm:mb-0">
                   By entering, you agree to all rules and terms.
                 </p>
-                <button className="text-sm bg-giveaway-light-purple text-giveaway-purple px-4 py-2 rounded-full hover:bg-giveaway-purple hover:text-white transition-colors duration-300">
+                <button className="text-sm bg-amber-100 text-amber-700 px-6 py-3 rounded-full hover:bg-amber-600 hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg border border-amber-200 hover:border-amber-600">
                   Download Full Rules PDF
                 </button>
               </div>
+            </div>
+            
+            {/* Added bonus tips box */}
+            <div className="mt-8 bg-gradient-to-r from-amber-50 to-amber-100 rounded-xl p-6 border border-amber-200 shadow-md">
+              <h3 className="text-xl font-semibold mb-3 text-amber-700">Tips for Entering</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
+                  <span className="text-gray-700">Double-check your email address before submitting your entry</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
+                  <span className="text-gray-700">Share on social media for additional entry opportunities</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs mt-1 mr-2">✓</span>
+                  <span className="text-gray-700">Set a calendar reminder for the drawing date</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
