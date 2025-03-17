@@ -1,7 +1,9 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Card, CardContent } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { Mail, Share2, Users, Check, ArrowRight, Clock, Trophy, Gift } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -132,7 +134,8 @@ const HowToEnter = () => {
           <p className="text-amber-700/80 text-lg">Getting started is easy! Follow these simple steps to enter our giveaway.</p>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 items-center">
+          {/* Left column with steps */}
           <div ref={stepsRef} className="space-y-8">
             {steps.map((step, index) => (
               <div key={index} className="step-item group bg-white p-6 rounded-xl shadow-md border border-amber-200 transition-all duration-300 hover:shadow-lg hover:border-amber-300">
@@ -168,92 +171,95 @@ const HowToEnter = () => {
             </div>
           </div>
           
+          {/* Right column with form */}
           <div ref={formRef} className="relative">
             {/* Card decoration */}
             <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-amber-500/20 rounded-2xl transform rotate-1 scale-105 -z-10 blur-sm"></div>
             
-            <div className="bg-white p-8 rounded-2xl shadow-xl relative z-10 border border-amber-200">
-              <div className="mb-8 flex items-center justify-between">
-                <h3 className="text-2xl font-semibold text-amber-800">Enter Now</h3>
-                <div className="bg-amber-100 px-4 py-2 rounded-full flex items-center">
-                  <Users size={18} className="text-amber-600 mr-2" />
-                  <span className="font-semibold text-amber-700">{entrants} entries</span>
+            <Card className="border border-amber-200 shadow-xl">
+              <CardContent className="p-8">
+                <div className="mb-8 flex items-center justify-between">
+                  <h3 className="text-2xl font-semibold text-amber-800">Enter Now</h3>
+                  <div className="bg-amber-100 px-4 py-2 rounded-full flex items-center">
+                    <Users size={18} className="text-amber-600 mr-2" />
+                    <span className="font-semibold text-amber-700">{entrants} entries</span>
+                  </div>
                 </div>
-              </div>
-              
-              {isSuccess ? (
-                <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Check size={30} className="text-green-600" />
-                  </div>
-                  <h4 className="text-xl font-medium text-green-800 mb-2">Entry Submitted!</h4>
-                  <p className="text-green-600">Check your email to confirm your entry.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-700">
-                      Your Name
-                    </label>
-                    <Input
-                      id="name"
-                      type="text"
-                      placeholder="John Doe"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-700">
-                      Email Address
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="you@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
-                    />
-                  </div>
-                  
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-md hover:shadow-lg transition-all duration-300 group border border-amber-400"
-                  >
-                    {isSubmitting ? "Processing..." : "Enter Giveaway"}
-                    <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                  </Button>
-                  
-                  <div className="pt-4 border-t border-amber-100">
-                    <h4 className="text-sm font-medium mb-2 text-amber-700">Share for Extra Entries:</h4>
-                    <div className="flex space-x-3">
-                      {['Facebook', 'Twitter', 'Instagram'].map((platform, i) => (
-                        <Button 
-                          key={i} 
-                          variant="outline" 
-                          size="sm"
-                          className="flex-1 border-amber-300 hover:bg-amber-100 hover:text-amber-700 text-amber-600 transition-all duration-300"
-                        >
-                          {platform}
-                        </Button>
-                      ))}
+                
+                {isSuccess ? (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Check size={30} className="text-green-600" />
                     </div>
+                    <h4 className="text-xl font-medium text-green-800 mb-2">Entry Submitted!</h4>
+                    <p className="text-green-600">Check your email to confirm your entry.</p>
                   </div>
-                  
-                  <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 mt-4">
-                    <p className="text-xs text-center text-amber-700">
-                      By entering, you agree to our Terms & Conditions and Privacy Policy.
-                    </p>
-                  </div>
-                </form>
-              )}
-            </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <Label htmlFor="name" className="block text-sm font-medium mb-2 text-amber-700">
+                        Your Name
+                      </Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        placeholder="John Doe"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        required
+                        className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="email" className="block text-sm font-medium mb-2 text-amber-700">
+                        Email Address
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="w-full border-amber-200 focus:border-amber-400 focus:ring-amber-400"
+                      />
+                    </div>
+                    
+                    <Button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="w-full py-6 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white shadow-md hover:shadow-lg transition-all duration-300 group border border-amber-400"
+                    >
+                      {isSubmitting ? "Processing..." : "Enter Giveaway"}
+                      <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                    </Button>
+                    
+                    <div className="pt-4 border-t border-amber-100">
+                      <h4 className="text-sm font-medium mb-2 text-amber-700">Share for Extra Entries:</h4>
+                      <div className="flex space-x-3">
+                        {['Facebook', 'Twitter', 'Instagram'].map((platform, i) => (
+                          <Button 
+                            key={i} 
+                            variant="outline" 
+                            size="sm"
+                            className="flex-1 border-amber-300 hover:bg-amber-100 hover:text-amber-700 text-amber-600 transition-all duration-300"
+                          >
+                            {platform}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="bg-amber-50 p-3 rounded-lg border border-amber-200 mt-4">
+                      <p className="text-xs text-center text-amber-700">
+                        By entering, you agree to our Terms & Conditions and Privacy Policy.
+                      </p>
+                    </div>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
