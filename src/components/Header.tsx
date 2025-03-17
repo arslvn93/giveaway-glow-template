@@ -1,7 +1,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -17,9 +17,13 @@ interface HeaderProps {
 const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
   const headerRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
   
   useEffect(() => {
     if (!headerRef.current) return;
+    
+    // Log the heroImage prop to verify what's being passed
+    console.log("Hero image URL:", heroImage);
     
     const tl = gsap.timeline();
     
@@ -101,11 +105,37 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
       tl.kill();
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
-  }, []);
+  }, [heroImage]);
   
-  // Fallback image in case the prop isn't available
-  const defaultHeroImage = "https://images.unsplash.com/photo-1631379578550-7049d89410c2?q=80&w=1000";
+  // Working fallback images  
+  const fallbackImages = [
+    "https://images.unsplash.com/photo-1631379578550-7049d89410c2?q=80&w=1000", // Main fallback
+    "https://images.unsplash.com/photo-1552767059-ce182ead6c1b?q=80&w=1000", // Alternative 1
+    "https://images.unsplash.com/photo-1600628421055-4d30de868b8f?q=80&w=1000", // Alternative 2
+  ];
+  
+  // Choose a reliable image
+  const defaultHeroImage = fallbackImages[0];
+  
+  // Use heroImage prop if available, otherwise use fallback
   const mainImage = heroImage || defaultHeroImage;
+  
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.log("Image failed to load:", e.currentTarget.src);
+    // If the main image fails, try the first fallback
+    if (e.currentTarget.src === mainImage) {
+      e.currentTarget.src = fallbackImages[1];
+    }
+    // If the first fallback fails, try the second fallback
+    else if (e.currentTarget.src === fallbackImages[1]) {
+      e.currentTarget.src = fallbackImages[2];
+    }
+  };
+  
+  const handleImageLoad = () => {
+    console.log("Image loaded successfully");
+    setImageLoaded(true);
+  };
   
   return (
     <header ref={headerRef} className="relative overflow-hidden h-screen flex items-center justify-center">
@@ -151,6 +181,8 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
                 src="https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=500" 
                 alt="Cheese assortment" 
                 className="w-full h-auto object-cover"
+                onError={handleImageError}
+                onLoad={handleImageLoad}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-amber-600/30 to-transparent"></div>
             </div>
@@ -159,11 +191,21 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
         
         <div className="header-image lg:w-1/2 relative">
           <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.03] hover:rotate-1">
+            {/* Main hero image with error handling */}
             <img 
               src={mainImage} 
               alt="Gourmet Cheese Board" 
               className="w-full h-auto object-cover"
+              onError={handleImageError}
+              onLoad={handleImageLoad}
             />
+            
+            {/* Added a loading indicator */}
+            {!imageLoaded && (
+              <div className="absolute inset-0 bg-amber-100/50 flex items-center justify-center">
+                <div className="w-16 h-16 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
             
             {/* Animated glow effect */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-500/60 to-amber-700/60 rounded-2xl blur opacity-70 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse-slow"></div>
@@ -176,6 +218,7 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
                 src="https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=500" 
                 alt="Cheese assortment" 
                 className="w-full h-full object-cover"
+                onError={handleImageError}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-amber-600/30 to-transparent"></div>
             </div>
