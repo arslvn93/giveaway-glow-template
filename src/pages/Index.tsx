@@ -13,50 +13,50 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-// Mock data
+// Cheese board images
 const prizeImages = [
-  "https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?q=80&w=1000",
-  "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?q=80&w=500",
-  "https://images.unsplash.com/photo-1564466809058-bf4114d55352?q=80&w=500",
+  "https://images.unsplash.com/photo-1631379578550-7049d89410c2?q=80&w=1000", // Cheese board
+  "https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=500", // Cheese assortment
+  "https://images.unsplash.com/photo-1621939514649-280e2ee25f60?q=80&w=500", // Olives and cheese
 ];
 
 const prizeFeatures = [
-  "Premium build quality with sleek design",
-  "State-of-the-art performance and speed",
-  "Extended warranty included",
-  "Free shipping to your doorstep",
-  "Exclusive accessories package",
+  "Assorted gourmet cheeses & olives - expertly selected and paired for rich, balanced flavor",
+  "Sea salt pretzels & chocolate bark - the perfect mix of crunchy, salty, and sweet indulgence",
+  "Handcrafted wooden cheese tray with premium knife set for effortless serving",
+  "Free delivery directly to your door in Vaughan",
+  "Perfect for a cozy night in with family and friends",
 ];
 
 const winners = [
   {
     name: "Jane Smith",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=688&auto=format&fit=crop",
-    prize: "Premium Smartphone",
-    testimonial: "I couldn't believe I won! The process was so easy and transparent. Thank you!",
+    prize: "Gourmet Cheese Basket",
+    testimonial: "The cheese basket was amazing! My family loved our cheese night. Such high quality products!",
   },
   {
     name: "Mark Johnson", 
     image: "https://images.unsplash.com/photo-1639747280804-dd2d6b3d88ac?q=80&w=774&auto=format&fit=crop",
-    prize: "Designer Watch",
-    testimonial: "This was the first contest I've ever won. The prize arrived quickly and was exactly as described.",
+    prize: "Wine & Cheese Package",
+    testimonial: "Everything arrived perfectly packaged. The wooden board is beautiful and the cheeses were delicious.",
   },
   {
     name: "Sarah Williams",
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop",
-    prize: "Luxury Headphones",
-    testimonial: "Amazing experience! I'm so happy with my new headphones. Will definitely enter more giveaways!",
+    prize: "Charcuterie Gift Set",
+    testimonial: "Our family had such a wonderful evening enjoying this prize. The variety of cheeses was perfect!",
   },
 ];
 
 const rules = [
   {
     question: "Who is eligible to enter?",
-    answer: "Anyone 18 years or older residing in the United States can enter this giveaway.",
+    answer: "Anyone 18 years or older residing in the Vaughan area can enter this giveaway.",
   },
   {
     question: "How long does the giveaway run?",
-    answer: "This giveaway runs for 14 days from the start date indicated by the countdown timer.",
+    answer: "This giveaway runs until February 2nd, 2025, as indicated by the countdown timer.",
   },
   {
     question: "How will the winner be selected?",
@@ -76,9 +76,8 @@ const rules = [
   },
 ];
 
-// Set end date to 14 days from now
-const endDate = new Date();
-endDate.setDate(endDate.getDate() + 14);
+// Set end date to February 2nd, 2025
+const endDate = new Date("February 2, 2025");
 
 const Index = () => {
   useEffect(() => {
@@ -118,16 +117,16 @@ const Index = () => {
   return (
     <div className="overflow-hidden">
       <Header 
-        title="Win a Premium Laptop Package!" 
-        description="Enter for a chance to win our exclusive high-performance laptop package valued at over $1,499. No purchase necessary."
+        title="Win a Curated Cheese Board Gift Basket!" 
+        description="Perfect for Vaughan families looking for a cozy night in! Enter for a chance to win our exclusive cheese board package valued at $175. No purchase necessary."
         ctaText="Enter Now"
         heroImage={prizeImages[0]}
       />
       
       <PrizeDetails 
         images={prizeImages}
-        title="Premium Laptop Package"
-        description="This high-performance laptop comes with everything you need for work and play. Featuring the latest processor, ample storage, and stunning display, this prize package also includes premium accessories to enhance your experience."
+        title="Gourmet Cheese Board Gift Basket"
+        description="This curated gift basket is perfect for an at-home charcuterie night. Featuring a handcrafted wooden cheese board, assortment of fine cheeses, olives, sea salt pretzels, chocolate bark, and a premium knife set—everything you need for a delicious evening with your loved ones."
         features={prizeFeatures}
       />
       
