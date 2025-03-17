@@ -8,7 +8,6 @@ import CountdownTimer from "@/components/CountdownTimer";
 import RulesSection from "@/components/RulesSection";
 import ContactSection from "@/components/ContactSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
-import Footer from "@/components/Footer";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -99,7 +98,6 @@ const Index = () => {
         <ContactSection contactInfo={contactContent} />
       </div>
       
-      <Footer />
       <ScrollToTopButton />
     </div>
   );
