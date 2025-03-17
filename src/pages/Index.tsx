@@ -14,7 +14,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
-// Cheese board images
+// Cheese board images - updated the main hero image URL
 const prizeImages = [
   "https://images.unsplash.com/photo-1631379578550-7049d89410c2?q=80&w=1000", // Cheese board
   "https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=500", // Cheese assortment

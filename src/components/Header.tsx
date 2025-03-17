@@ -103,6 +103,10 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
     };
   }, []);
   
+  // Fallback image in case the prop isn't available
+  const defaultHeroImage = "https://images.unsplash.com/photo-1631379578550-7049d89410c2?q=80&w=1000";
+  const mainImage = heroImage || defaultHeroImage;
+  
   return (
     <header ref={headerRef} className="relative overflow-hidden h-screen flex items-center justify-center">
       {/* Parallax background */}
@@ -156,8 +160,8 @@ const Header = ({ title, description, ctaText, heroImage }: HeaderProps) => {
         <div className="header-image lg:w-1/2 relative">
           <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-[1.03] hover:rotate-1">
             <img 
-              src={heroImage} 
-              alt="Prize" 
+              src={mainImage} 
+              alt="Gourmet Cheese Board" 
               className="w-full h-auto object-cover"
             />
             
