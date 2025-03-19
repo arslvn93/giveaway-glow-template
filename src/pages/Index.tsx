@@ -1,5 +1,6 @@
 
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
 import PrizeDetails from "@/components/PrizeDetails";
@@ -65,12 +66,22 @@ const Index = () => {
     <div className="overflow-hidden">
       <Navigation />
       
+      {/* Add a fixed link to modern version */}
+      <div className="fixed bottom-20 right-4 z-50">
+        <Link 
+          to="/modern" 
+          className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+        >
+          <span>Modern Version</span>
+        </Link>
+      </div>
+      
       <Header 
         title={headerContent.title}
         description={headerContent.description}
         ctaText={headerContent.ctaText}
         heroImage={headerContent.heroImage}
-        secondaryImage={headerContent.secondaryImage} // Add secondary image prop
+        secondaryImage={headerContent.secondaryImage} 
       />
       
       {/* Ensure consistent section spacing and transitions between sections */}
