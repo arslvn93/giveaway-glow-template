@@ -23,8 +23,6 @@ import {
 // Import framer-motion for animations
 import { motion } from "framer-motion";
 
-<lov-add-dependency>framer-motion@latest</lov-add-dependency>
-
 const Modern = () => {
   return (
     <div className="min-h-screen bg-white">
